@@ -21,15 +21,17 @@ public class CandleUrlBuilder extends CryptoComUrlBuilder{
     }
 
     @Override
-    public void setInstrumentName(String instrumentName) throws InvalidTickerPatternException {
+    public CandleUrlBuilder setInstrumentName(String instrumentName) throws InvalidTickerPatternException {
         if(!tickerPattern.matcher(instrumentName).find()) throw new InvalidTickerPatternException(instrumentName+" is invalid.");
         this.url +=  this.url.endsWith("get-candlestick")?"?":"&";
         this.url += "instrument_name="+instrumentName.toUpperCase();
+        return this;
     }
 
-    public void setTimeFrame(String timeframe) throws InvalidTimeframeException {
+    public CandleUrlBuilder setTimeFrame(String timeframe) throws InvalidTimeframeException {
         if(!timeframePattern.matcher(timeframe).find()) throw new InvalidTimeframeException(timeframe+" is invalid.");
         this.url +=  this.url.endsWith("get-candlestick")?"?":"&";
         this.url += "timeframe="+timeframe;
+        return this;
     }
 }

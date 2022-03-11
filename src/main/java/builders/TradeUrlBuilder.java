@@ -19,9 +19,10 @@ public class TradeUrlBuilder extends CryptoComUrlBuilder{
         return this.url;
     }
 
-    public void setInstrumentName(String instrumentName) throws InvalidTickerPatternException {
+    public TradeUrlBuilder setInstrumentName(String instrumentName) throws InvalidTickerPatternException {
         if(!tickerPattern.matcher(instrumentName).find()) throw new InvalidTickerPatternException("");
         this.url +=  this.url.endsWith("get-trades")?"?":"&";
         this.url += "instrument_name="+instrumentName.toUpperCase();
+        return this;
     }
 }
