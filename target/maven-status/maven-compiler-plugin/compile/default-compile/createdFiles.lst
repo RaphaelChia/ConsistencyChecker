@@ -1,9 +1,0 @@
-constants\Timeframes.class
-builders\CryptoComUrlBuilder.class
-constants\httpConstants.class
-ConsistencyChecker.class
-builders\TradeUrlBuilder.class
-builders\CandleUrlBuilder.class
-exceptions\InvalidTimeframeException.class
-constants\RegexPatterns.class
-exceptions\InvalidTickerPatternException.class
