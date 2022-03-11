@@ -1,4 +1,5 @@
 import builders.CandleUrlBuilder;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import constants.Timeframes;
 import exceptions.InvalidTickerPatternException;
 import exceptions.InvalidTimeframeException;
@@ -29,7 +30,8 @@ public class ConsistencyChecker {
                     .build();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             System.out.println(response.body());
-        }catch(InvalidTickerPatternException ITE){
+            ObjectMapper om = new ObjectMapper()
+;        }catch(InvalidTickerPatternException ITE){
             System.out.printf("%s Tickers should be within %s-%s characters long.%n",ITE.getMessage(),tickerMin,tickerMax);
         }catch(InvalidTimeframeException ITE){
             System.out.printf("%s Timeframe error.%n",ITE.getMessage());
