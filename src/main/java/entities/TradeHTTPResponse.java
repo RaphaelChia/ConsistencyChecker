@@ -2,7 +2,7 @@ package entities;
 
 public class TradeHTTPResponse extends CryptoComHTTPResponse{
     private GetTradeResponseResult result;
-    private String code;
+//    private String code;
     private String method;
 
     public GetTradeResponseResult getResult() {
@@ -13,13 +13,13 @@ public class TradeHTTPResponse extends CryptoComHTTPResponse{
         this.result = result;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
+//    public String getCode() {
+//        return code;
+//    }
+//
+//    public void setCode(String code) {
+//        this.code = code;
+//    }
 
     public String getMethod() {
         return method;

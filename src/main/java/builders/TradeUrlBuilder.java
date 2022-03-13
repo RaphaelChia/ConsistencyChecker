@@ -5,24 +5,29 @@ import exceptions.InvalidTickerPatternException;
 import static constants.RegexPatterns.tickerPattern;
 import static constants.httpConstants.getTradesUrl;
 
-public class TradeUrlBuilder extends CryptoComUrlBuilder{
+public class TradeUrlBuilder extends TickerRelatedUrlBuilder {
 
     private final String baseURL = getTradesUrl;
-    private String url;
+    private String instrumentName;
 
-    public TradeUrlBuilder() {
-        this.url = this.baseURL;
-    }
 
     @Override
     public String getURL() {
-        return this.url;
+        StringBuilder sb = new StringBuilder();
+        sb.append(baseURL);
+        sb.append(instrumentName==null || instrumentName.isEmpty()?"":"?instrument_name="+instrumentName);
+        System.out.println("Trades API URL: "+sb);
+        return sb.toString();
     }
 
     public TradeUrlBuilder setInstrumentName(String instrumentName) throws InvalidTickerPatternException {
         if(!tickerPattern.matcher(instrumentName).find()) throw new InvalidTickerPatternException("");
-        this.url +=  this.url.endsWith("get-trades")?"?":"&";
-        this.url += "instrument_name="+instrumentName.toUpperCase();
+        this.instrumentName=instrumentName;
         return this;
+    }
+
+    @Override
+    public void reset() {
+        instrumentName = null;
     }
 }

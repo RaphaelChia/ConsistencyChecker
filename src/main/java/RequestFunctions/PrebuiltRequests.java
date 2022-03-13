@@ -1,10 +1,8 @@
-package RequestWrapper;
+package RequestFunctions;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import entities.CandleHTTPResponse;
 import entities.CryptoComHTTPResponse;
-import entities.TradeHTTPResponse;
 
 import java.io.IOException;
 import java.net.URI;

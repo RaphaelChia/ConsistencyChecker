@@ -1,13 +1,19 @@
 package entities;
 
+import java.math.BigDecimal;
+
+/**
+ * Trade class contains the information of the trade being executed for a particular currency.
+ *
+ */
 public class Trade {
     private long dataTime;
     private String d; //Trade id
     private String s; //Side either BUY or SELL
-    private float p; //Trade price
-    private float q; //Trade Quantity
-    private long t; //Unix timestamp of trade
-    private String i; //Ticker
+    private BigDecimal p; //Trade price
+    private BigDecimal q; //Trade Quantity
+    private long t; //Unix timestamp of trade, millisecond
+    private String i; //Ticker symbol.
 
     public long getDataTime() {
         return dataTime;
@@ -33,19 +39,19 @@ public class Trade {
         this.s = s;
     }
 
-    public float getP() {
+    public BigDecimal getP() {
         return p;
     }
 
-    public void setP(float p) {
+    public void setP(BigDecimal p) {
         this.p = p;
     }
 
-    public float getQ() {
+    public BigDecimal getQ() {
         return q;
     }
 
-    public void setQ(float q) {
+    public void setQ(BigDecimal q) {
         this.q = q;
     }
 

@@ -1,11 +1,17 @@
 package entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *  This is the value of the "result" parameter from Crypto com API response.
+ */
 public class GetCandlestickResponseResult extends Result {
 
     private String instrument_name;
     private int depth;
     private String interval;
-    private Candlestick[] data;
+    private List<Candlestick> data;
 
     public String getInstrument_name() {
         return instrument_name;
@@ -31,11 +37,19 @@ public class GetCandlestickResponseResult extends Result {
         this.interval = interval;
     }
 
-    public Candlestick[] getData() {
+    public List<Candlestick> getData() {
         return data;
     }
 
-    public void setData(Candlestick[] data) {
+    public void setData(List<Candlestick> data) {
         this.data = data;
+    }
+
+    public List<Candlestick> getPastXBarsIncludeCurrent(int x){
+        return this.data.subList(this.data.size()-x,this.data.size());
+    }
+
+    public List<Candlestick> getPastXBarsExcludeCurrent(int x){
+        return this.data.subList(this.data.size()-1-x,this.data.size()-1);
     }
 }

@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 public class CandleHTTPResponse extends CryptoComHTTPResponse {
     private GetCandlestickResponseResult result;
-    private String code;
     private String method;
+
 
     public GetCandlestickResponseResult getResult() {
         return result;
@@ -16,13 +16,13 @@ public class CandleHTTPResponse extends CryptoComHTTPResponse {
         this.result = result;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
+//    public String getCode() {
+//        return code;
+//    }
+//
+//    public void setCode(String code) {
+//        this.code = code;
+//    }
 
     public String getMethod() {
         return method;
