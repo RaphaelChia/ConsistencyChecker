@@ -1,12 +1,12 @@
 package builders;
 
 
+import constants.Timeframes;
 import exceptions.InvalidTickerPatternException;
 import exceptions.InvalidTimeframeException;
 import exceptions.MissingParamsException;
 
 import static constants.RegexPatterns.tickerPattern;
-import static constants.RegexPatterns.timeframePattern;
 import static constants.httpConstants.getCandleUrl;
 
 /**
@@ -44,7 +44,7 @@ public class CandleUrlBuilder extends TickerRelatedUrlBuilder {
     }
 
     public CandleUrlBuilder setTimeFrame(String timeframe) throws InvalidTimeframeException {
-        if(!timeframePattern.matcher(timeframe).find()) throw new InvalidTimeframeException(timeframe+" is invalid.");
+        Timeframes.getMinutes(timeframe); //Checking if supported timeframe. If it isn't, error is thrown.
         this.timeframe = timeframe;
         return this;
     }

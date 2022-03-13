@@ -19,12 +19,13 @@ public class ConsistencyChecker {
         System.out.print("\033[H\033[2J");
         System.out.flush();
         try{
-            if(args.length<1){
-                System.out.println("No ticker sepcified.");
-                return;
-            }
-            String insName = args[0];
-            String timeframe = args.length>1?args[1]:Timeframes.m1;
+//            if(args.length<1){
+//                System.out.println("No ticker sepcified.");
+//                return;
+//            }
+            String insName = "BRZ_USDT";
+//            String insName = args[0];
+            String timeframe = args.length>1?args[1]:Timeframes.m30;
             int numBars = args.length>2?Integer.parseInt(args[2]):5;
             Timeframes.getMinutes(timeframe); // Checking for valid timeframe
             if(numBars<=0){
