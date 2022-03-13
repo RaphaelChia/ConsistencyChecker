@@ -124,7 +124,7 @@ public class Reconciliation {
         printResultString();
     }
     public void printResultString(){
-        System.out.printf("Report:%n%s", Objects.equals(resultString, "") ?"No Inconsistent Candle Detected!":resultString);
+        System.out.printf("Report:%n%s", Objects.equals(resultString, "") ?"No Inconsistent Candle Detected!\n":resultString);
     }
 
 }
