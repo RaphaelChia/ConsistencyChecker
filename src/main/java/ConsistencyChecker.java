@@ -19,8 +19,6 @@ public class ConsistencyChecker {
         System.out.print("\033[H\033[2J");
         System.out.flush();
         try{
-//            String insName = "ETH_USDT";
-//            String insName = "BRZ_USDT";
             if(args.length<1){
                 System.out.println("No ticker sepcified.");
                 return;
@@ -29,6 +27,10 @@ public class ConsistencyChecker {
             String timeframe = args.length>1?args[1]:Timeframes.m1;
             int numBars = args.length>2?Integer.parseInt(args[2]):5;
             Timeframes.getMinutes(timeframe); // Checking for valid timeframe
+            if(numBars<=0){
+                System.out.println("Number of bars to reconcile must be positive.");
+                return;
+            }
             long start = System.currentTimeMillis();
             System.out.println("Ticker to check: "+insName);
             System.out.println("Timeframe to check: "+timeframe);
@@ -59,21 +61,8 @@ public class ConsistencyChecker {
 
             List<Trade> tradeData = ((TradeHTTPResponse)tradeResp).getResult().getData();
             List<Candlestick> candleData = ((CandleHTTPResponse)candleResp).getResult().getData();
-//            Calendar cal = Calendar.getInstance();
-//            tradeData.forEach(trade -> {
-//                cal.setTimeInMillis(trade.getT());
-//                System.out.printf("%tT %1$tA, %1$tB %1$tY Price:%f %n",cal,trade.getP().doubleValue());
-//            });
             Reconciliation recon = new Reconciliation();
             recon.reconcile(numBars,tradeData,candleData,timeframe);
-//
-//            candleData.forEach(candlestick -> {
-//                cal.setTimeInMillis(candlestick.getT());
-//                System.out.printf("%tT %1$tA, %1$tB %1$tY O:%f H:%f L:%f C:%f %n",cal,candlestick.getO(),candlestick.getH(),candlestick.getL(),candlestick.getC());
-//            });
-
-
-
         }catch(InvalidTickerPatternException ITE){
             System.out.printf("%s Tickers should be within %s-%s characters long.%n",ITE.getMessage(),tickerMin,tickerMax);
         }catch(InvalidTimeframeException ITE){

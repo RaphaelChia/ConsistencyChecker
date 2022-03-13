@@ -29,4 +29,4 @@ You can leave the `timeframe` and `number of bars to reconcile` blank. It defaul
 ### Guidelines
 - Timeframe argument only accepts:
 `1m, 5m, 15m, 30m, 1h, 4h, 6h, 12h, 1D, 7D, 14D`
-- Number of bars must be a __number__.
+- Number of bars must be a __positive number__.
