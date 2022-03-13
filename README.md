@@ -1,4 +1,4 @@
-# Candle Reconciliation
+# Maven Candle Reconciliation Project
 Checking the candles consistency against the trades of a particular ticker.
 
 ## Setup
