@@ -5,7 +5,9 @@ Checking the candles consistency against the trades of a particular ticker.
 - Using command prompt (important)
 - Ensure that maven is set up in your path variable.
 - Double check by running `mvn --version`
-- At the root directory, run this command:
+- Java 11 and above.
+- Double check by running `java --version`
+- At the project root directory, run this command:
 `mvn -s settings.xml clean package` If this doesn't work, run this instead -> `mvn -gs settings.xml clean package `
 
 
