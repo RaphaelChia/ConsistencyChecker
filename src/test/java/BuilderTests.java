@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class BuilderTest {
+public class BuilderTests {
 
     TradeUrlBuilder tradeUrlBuilder = new TradeUrlBuilder();
     CandleUrlBuilder candleUrlBuilder = new CandleUrlBuilder();

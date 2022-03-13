@@ -1,3 +1,5 @@
+import constants.Timeframes;
+import exceptions.InvalidTimeframeException;
 import org.junit.jupiter.api.Test;
 
 import java.util.regex.Pattern;
@@ -5,7 +7,7 @@ import java.util.regex.Pattern;
 import static constants.RegexPatterns.tickerPattern;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class MyTest {
+public class UnitTests {
     @Test
     public void tickerPatternFailMatchTest(){
         Pattern p = tickerPattern;
@@ -24,5 +26,15 @@ public class MyTest {
         assertTrue(p.matcher("BT_USDTTT").find());
         assertTrue(p.matcher("BTCTTT_US").find());
         assertTrue(p.matcher("BTC_USDT").find());
+    }
+
+    @Test
+    public void timeframeNotSupportedTest(){
+        try {
+            Timeframes.getMinutes("2m");
+            fail("No exception thrown when given unsupported timeframe.");
+        } catch (InvalidTimeframeException ignored) {
+
+        }
     }
 }
