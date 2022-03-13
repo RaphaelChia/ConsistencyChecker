@@ -21,11 +21,18 @@ public class ConsistencyChecker {
         try{
 //            String insName = "ETH_USDT";
 //            String insName = "BRZ_USDT";
+            if(args.length<1){
+                System.out.println("No ticker sepcified.");
+                return;
+            }
             String insName = args[0];
-            String timeframe = args[1];
-            int numBars = Integer.parseInt(args[2]);
+            String timeframe = args.length>1?args[1]:Timeframes.m1;
+            int numBars = args.length>2?Integer.parseInt(args[2]):5;
+            Timeframes.getMinutes(timeframe); // Checking for valid timeframe
             long start = System.currentTimeMillis();
-
+            System.out.println("Ticker to check: "+insName);
+            System.out.println("Timeframe to check: "+timeframe);
+            System.out.println("NUmber of bars to reconcile: "+numBars);
             // Build the candle url with GET
             CandleUrlBuilder cdlBuilder = new CandleUrlBuilder()
                     .setTimeFrame(timeframe)
@@ -35,6 +42,14 @@ public class ConsistencyChecker {
 
             CryptoComHTTPResponse candleResp = PrebuiltRequests.submitRequest(cdlBuilder.getURL());
             CryptoComHTTPResponse tradeResp = PrebuiltRequests.submitRequest(tBuilder.getURL());
+
+            // If any data is null means there has been an error.
+            if(((TradeHTTPResponse)tradeResp).getResult().getData()==null || ((TradeHTTPResponse)tradeResp).getResult().getData().isEmpty()
+            || ((CandleHTTPResponse)candleResp).getResult().getData()==null || ((CandleHTTPResponse)candleResp).getResult().getData().isEmpty()){
+                System.out.println("Unable to perform reconciliation. The API response is empty. Please check your settings and retry.");
+                return;
+            }
+
             long finish = System.currentTimeMillis();
             long timeElapsed = finish - start;
 
@@ -62,11 +77,13 @@ public class ConsistencyChecker {
         }catch(InvalidTickerPatternException ITE){
             System.out.printf("%s Tickers should be within %s-%s characters long.%n",ITE.getMessage(),tickerMin,tickerMax);
         }catch(InvalidTimeframeException ITE){
-            System.out.printf("%s Timeframe error.%n",ITE.getMessage());
+            System.out.printf("Timeframe error.%n%s",ITE.getMessage());
         }catch(IOException ioe){
             System.out.printf("IO Exception Encountered. %n%s",ioe.getMessage());
         }catch(InterruptedException ie){
             System.out.printf("Request was interrupted. %n%s",ie.getMessage());
+        }catch(NumberFormatException nfe){
+            System.out.println("Number of bars should be a number.");
         }catch(Exception e){
             System.out.println(e.getMessage());
         }

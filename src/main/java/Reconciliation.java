@@ -1,6 +1,7 @@
 import constants.Timeframes;
 import entities.Candlestick;
 import entities.Trade;
+import exceptions.InvalidTimeframeException;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
@@ -24,7 +25,7 @@ public class Reconciliation {
      *                 e.g. its 23:22:02 now, the latest M1 candlestick time is 23:22:00,
      *                 so it will go to 23:21 and start
      */
-    public void reconcile(int xNumBars, List<Trade> tradeData, List<Candlestick> candleData,String timeframe){
+    public void reconcile(int xNumBars, List<Trade> tradeData, List<Candlestick> candleData,String timeframe) throws InvalidTimeframeException {
         if(xNumBars>candleData.size()-1) return; //Dont run if numbars more than candle data passed in
         barsToCheck=xNumBars;
         totalActuallyChecked = 0;
@@ -58,7 +59,6 @@ public class Reconciliation {
             resultString+=String.format("[Trade data insufficient for %d candles of %s timeframe]%n%n",barsToCheck,timeframe );
         }
         while(cdlIdx<candlesToCheck.size() && tradeIdx<tradeData.size()){
-            //Infinite loop if btc_usdt
             Candlestick currentCdlObj = candlesToCheck.get(cdlIdx);
             candleDTCurrent.setTimeInMillis(currentCdlObj.getT());
             candleDTLater.setTimeInMillis(currentCdlObj.getT());
