@@ -41,14 +41,14 @@ public class Reconciliation {
         List<Candlestick> candlesToCheck = candleData.subList(candleData.size()-1-xNumBars,candleData.size()-1);
         Collections.reverse(candlesToCheck);
 
-        // Checking if there is enough trade data to perform reconciliation
-        Calendar tempDT = Calendar.getInstance();
-        tradeDT.setTimeInMillis(tradeData.get(tradeData.size()-1).getT()); //Set the most recent DT
-        tempDT.setTimeInMillis(tradeData.get(0).getT()); //Set the most recent minus (bars * TF in minutes)
-        tempDT.add(Calendar.MINUTE,-barsToCheck*timeframeInMinutes);
-        if(tempDT.before(tradeDT)){
-            resultString+=String.format("[Trade data insufficient for %d candles of %s timeframe]%n%n",barsToCheck,timeframe );
-        }
+//        // Checking if there is enough trade data to perform reconciliation
+//        Calendar tempDT = Calendar.getInstance();
+//        tradeDT.setTimeInMillis(tradeData.get(tradeData.size()-1).getT()); //Set the most recent DT
+//        tempDT.setTimeInMillis(tradeData.get(0).getT()); //Set the most recent minus (bars * TF in minutes)
+//        tempDT.add(Calendar.MINUTE,-barsToCheck*timeframeInMinutes);
+//        if(tempDT.before(tradeDT)){
+//            resultString+=String.format("[Trade data insufficient for %d candles of %s timeframe]%n%n",barsToCheck,timeframe );
+//        }
 
         while(cdlIdx<candlesToCheck.size() && tradeIdx<tradeData.size()){
             Candlestick currentCdlObj = candlesToCheck.get(cdlIdx);
@@ -118,6 +118,8 @@ public class Reconciliation {
             }
         }
         System.out.printf("Finished. %d/%d accurate Candlesticks.%n",accurateCandles, totalActuallyChecked);
+        if(totalActuallyChecked==0)
+            resultString+=String.format("[Trade data insufficient for %d candles of %s timeframe]%n%n",barsToCheck,timeframe );
         printResultString();
     }
     public void printResultString(){
