@@ -49,6 +49,7 @@ public class Reconciliation {
         if(tempDT.before(tradeDT)){
             resultString+=String.format("[Trade data insufficient for %d candles of %s timeframe]%n%n",barsToCheck,timeframe );
         }
+
         while(cdlIdx<candlesToCheck.size() && tradeIdx<tradeData.size()){
             Candlestick currentCdlObj = candlesToCheck.get(cdlIdx);
             candleDTCurrent.setTimeInMillis(currentCdlObj.getT());
