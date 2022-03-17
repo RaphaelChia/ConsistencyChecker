@@ -22,9 +22,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 })
 public abstract class CryptoComHTTPResponse {
     public String code;
-    // The reason why i cannot put result over here even though is always repeated in http response is because
+    // The reason why i cannot put result over here even though its always repeated in http response is because
     // result have different kind of body, which require a polymorphic deserialization, which require a
     // property that specifies which object to be mapped to.
-    // And in the result object, there is no unique field to consistently determine, this is what kind of http response
-    // result.
+    // And in the result object, there is no unique field to consistently determine, what kind of http response
+    // result is this.
 }

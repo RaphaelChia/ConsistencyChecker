@@ -25,7 +25,7 @@ Trade data will return the latest 200 trades that took place for the instrument.
 
 ## Running the program
 
-`mvn exec:java -Dexec.mainClass=ConsistencyChecker -Dexec.cleanupDaemonThreads=false -Dexec.args="BRZ_USDT 1m 5`
+`mvn exec:java -Dexec.mainClass=ConsistencyChecker -Dexec.cleanupDaemonThreads=false -Dexec.args="BRZ_USDT 1m 5"`
 
 ### Explanation
 The template command is as such:

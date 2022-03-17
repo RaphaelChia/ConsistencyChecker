@@ -23,6 +23,7 @@ public class Timeframes {
 
 
     public static int getMinutes(String tf) throws InvalidTimeframeException {
+        //Singleton pattern to only populate the first time this function is called
         if(inMinutes.isEmpty()){
             inMinutes.put(m1,1);
             inMinutes.put(m5,5);

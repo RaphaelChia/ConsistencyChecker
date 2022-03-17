@@ -31,7 +31,7 @@ public class ConsistencyChecker {
                 System.out.println("Number of bars to reconcile must be positive.");
                 return;
             }
-            long start = System.currentTimeMillis();
+            long start = System.currentTimeMillis(); //Starting the milisecond timer
             System.out.println("Ticker to check: "+insName);
             System.out.println("Timeframe to check: "+timeframe);
             System.out.println("NUmber of bars to reconcile: "+numBars);
