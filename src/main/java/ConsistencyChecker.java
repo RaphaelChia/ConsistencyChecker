@@ -24,7 +24,7 @@ public class ConsistencyChecker {
                return;
            }
             String insName = args[0];
-            String timeframe = args.length>1?args[1]:Timeframes.m30;
+            String timeframe = args.length>1?args[1]:Timeframes.m1;
             int numBars = args.length>2?Integer.parseInt(args[2]):5;
             Timeframes.getMinutes(timeframe); // Checking for valid timeframe
             if(numBars<=0){
